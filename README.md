@@ -25,6 +25,7 @@ The goals / steps of this project are the following:
 [image4]: ./output_images/view_trans_bf.png "Warp Example"
 [image5]: ./output_images/drawline.png "Fit Visual"
 [image6]: ./output_images/result.png "Output"
+[image7]: ./output_images/wrong.png "wrong"
 [video1]: ./test_videos_output/project_video_output.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
@@ -122,4 +123,6 @@ Here's a [link to my video result](./test_videos_output/project_video_output.mp4
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-The pipeline may can't detect one line(left line or right line) in the thresholded binary image when there isn't much line points in the image. We can improve it by using the data in the previous frames in the video.  
+Some resulting polynomial lines in the video do not fit the actual lane lines too well. There is an example:
+![alt text][image7]
+We can make it more robust by counting the distance between the two polynomials and the radius difference between two curvatures. If the distance or the radius difference is not reasonable, we can use the data in the previous frame to correct this frame.
